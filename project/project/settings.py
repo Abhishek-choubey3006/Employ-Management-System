@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'project_hrms',
+        'USER': 'root',
+        'PASSWORD': 'Abhi@7050',
+        'HOST': 'localhost',  # or your MySQL server IP
+        'PORT': '3306',        # default MySQL port
     }
 }
 

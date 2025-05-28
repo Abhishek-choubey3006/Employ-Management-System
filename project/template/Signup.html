@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHR - Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    {% if messages %}
+        <div class="w-full max-w-4xl bg-white shadow-lg rounded-lg p-4 mb-4">
+            {% for msg in messages %}
+                <div class="text-center text-red-500">{{ msg }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="flex w-full max-w-4xl bg-white shadow-lg rounded-lg">
+        <!-- Left Side Banner -->
+        <div class="hidden md:flex flex-col justify-center items-center w-1/2 bg-orange-500 text-white p-8 rounded-l-lg">
+            <h2 class="text-2xl font-bold text-center">Empowering people through seamless HR management.</h2>
+            <p class="mt-4 text-center">Efficiently manage your workforce, streamline operations effortlessly.</p>
+            <img src="https://via.placeholder.com/250" alt="HR Management" class="mt-6 w-48">
+        </div>
+
+        <!-- Right Side - Sign Up Form -->
+        <div class="w-full md:w-1/2 p-8">
+            <div class="flex justify-center mb-6">
+                <img src="https://via.placeholder.com/50" alt="SmartHR Logo">
+            </div>
+            <h2 class="text-2xl font-bold text-center mb-4">Sign Up</h2>
+            <p class="text-gray-500 text-center mb-6">Please enter your details to sign up</p>
+
+            <form id="signupForm" method="post" action="{% url 'user_signup' %}">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label class="block text-gray-700">UserName</label>
+                    <input type="text" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-orange-500" placeholder="Enter your username" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Email Address</label>
+                    <input type="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-orange-500" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Password</label>
+                    <input type="password" name="password" id="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-orange-500" placeholder="Enter your password" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Confirm Password</label>
+                    <input type="password" name="confirm" id="confirm" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-orange-500" placeholder="Confirm your password" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Register As</label>
+                    <div class="flex gap-4">
+                        <!-- <label class="flex items-center">
+                            <input type="radio" name="role" value="admin" class="mr-2"> Admin
+                        </label> -->
+                        <label class="flex items-center">
+                            <input type="radio" name="role" value="employee" class="mr-2" checked> Employee
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2" required> Agree to Terms and Conditions
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">Sign Up</button>
+            </form>
+
+            <p class="text-center text-gray-600 mt-4">Have an account? <a href="{% url 'user_login' %}" class="text-orange-500 hover:underline">Log In</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm").value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                alert("Passwords do not match.");
+            }
+        });
+    </script>
+</body>
+</html>
