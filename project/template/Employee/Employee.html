@@ -1,7 +1,193 @@
 {% extends 'Base.html' %}
 {% block content %}
 
-<h1>hello welcome to EMployee  Page Thankyou </h1>
+<h1>hello welcome to EMployee Page Thankyou </h1>
+<a href="{% url 'user_logout' %}">Logout</a>
 
+
+<br>
+<br>
+<div class="container my-4">
+
+    <div class="row g-3">
+
+        <!-- Profile -->
+
+        <div class="col-md-4">
+            <div class="card position-relative flex-fill">
+                <div class="card-header bg-dark">
+                    <div class="d-flex align-items-center">
+                        <span class="avatar avatar-lg avatar-rounded border border-white border-2 flex-shrink-0 me-2">
+                            <img src="assets/img/users/user-01.jpg" alt="Img">
+                        </span>
+                        <div>
+                            <h5 class="text-white mb-1">Stephan Peralt</h5>
+                            <div class="d-flex align-items-center">
+                                <p class="text-white fs-12 mb-0">Senior Product Designer</p>
+                                <span class="mx-1"><i class="ti ti-point-filled text-primary"></i></span>
+                                <p class="fs-12">UI/UX Design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-icon btn-sm text-white rounded-circle edit-top"><i
+                            class="ti ti-edit"></i></a>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <span class="d-block mb-1 fs-13">Phone Number</span>
+                        <p class="text-gray-9">+1 324 3453 545</p>
+                    </div>
+                    <div class="mb-3">
+                        <span class="d-block mb-1 fs-13">Email Address</span>
+                        <p class="text-gray-9">Steperde124@example.com</p>
+                    </div>
+                    <div class="mb-3">
+                        <span class="d-block mb-1 fs-13">Report Office</span>
+                        <p class="text-gray-9">Doglas Martini</p>
+                    </div>
+                    <div>
+                        <span class="d-block mb-1 fs-13">Joined on</span>
+                        <p class="text-gray-9">15 Jan 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leave Details chart -->
+        <div class="col-md-4 " style="width: 520px;">
+            <div class=" card position-relative flex-fill" style="height: 100%;">
+
+                <div class="card-header">
+                    <h5>Leave Details</h5>
+                </div>
+                <div class="row h-100" style="padding: 10px;">
+
+
+                    <!-- Content left -->
+                    <div class="col-6 d-flex flex-column justify-content-start" style="margin-top: 60px;">
+                        <ul class="mb-3" style="list-style: none; padding-left: 5px;">
+                            <li style="line-height: 25px;"><span style="color: #0d3d4f; font-weight: bold;">●</span>
+                                1254 on time</li>
+
+                            <li style="line-height: 25px;"><span style="color: #00c851; font-weight: bold;">●</span> 32
+                                Late Attendance</li>
+                            <li style="line-height: 25px;"><span style="color: #ff8800; font-weight: bold;">●</span> 658
+                                Work From Home</li>
+                            <li style="line-height: 25px;"><span style="color: #ff4444; font-weight: bold;">●</span> 14
+                                Absent</li>
+                            <li style="line-height: 25px;"><span style="color: #ffbb33; font-weight: bold;">●</span> 68
+                                Sick Leave</li>
+                        </ul>
+                        <br>
+
+                    </div>
+                    <!-- Chart right -->
+
+                    <div class="col-6 d-flex align-items-center justify-content-center">
+                        <div style="width: 100%; height: 300px;">
+                            <canvas id="leaveDetailsChart"
+                                style="width: 100%; height: 100%;padding: 5px;margin-top: -10px;"></canvas>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <div class="form-check" style="margin-left: 20px;">
+                        <input class="form-check-input" type="checkbox" id="betterThan85">
+                        <label class="form-check-label" for="betterThan85">
+                            Better than 85% of Employees
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leave Detail Box -->
+
+        <div class="col-md-4" style="width: 350px;height: 400px;">
+            <div class="card flex-fill">
+                <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2">
+                        <h5>Leave Details</h5>
+                        <div class="dropdown">
+                            <a href="javascript:void(0);"
+                                class="btn btn-white border btn-sm d-inline-flex align-items-center"
+                                data-bs-toggle="dropdown">
+                                <i class="ti ti-calendar me-1"></i>2024
+                            </a>
+                            <ul class="dropdown-menu  dropdown-menu-end p-3">
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item rounded-1">2024</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item rounded-1">2023</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item rounded-1">2022</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card-body">
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <span class="d-block mb-1">Total Leaves</span>
+                                <h4>16</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <span class="d-block mb-1">Taken</span>
+                                <h4>10</h4>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <span class="d-block mb-1">Absent</span>
+                                <h4>2</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <span class="d-block mb-1">Request</span>
+                                <h4>0</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <span class="d-block mb-1">Worked Days</span>
+                                <h4>240</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <span class="d-block mb-1">Loss of Pay</span>
+                                <h4>2</h4>
+                            </div>
+                        </div>
+                        <br>
+                        
+                        <div class="col-sm-12">
+                            <div>
+                                <a href="#" class="btn btn-dark w-50" data-bs-toggle="modal"
+                                    data-bs-target="#add_leaves">Apply New Leave</a>
+                            </div>
+                            
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
 
 {% endblock %}
