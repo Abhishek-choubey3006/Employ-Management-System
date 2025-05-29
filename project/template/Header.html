@@ -1,60 +1,62 @@
+<!-- Top Navbar -->
+<nav class="navbar navbar-light bg-white shadow-sm px-3 py-2">
+  <div class="d-flex align-items-center gap-3">
+    <button class="btn btn-light p-1"><i class="bi bi-arrow-left"></i></button>
+    <input class="form-control form-control-sm w-50" type="search" placeholder="Search in HRMS" />
+    <span class="badge bg-light text-dark border">CTRL + /</span>
+    <i class="bi bi-grid top-bar-icon ms-3"></i>
+    <i class="bi bi-gear top-bar-icon"></i>
+  </div>
+  <div class="d-flex align-items-center gap-3">
+    <i class="bi bi-fullscreen top-bar-icon"></i>
+    <i class="bi bi-grid-3x3-gap top-bar-icon"></i>
+    <i class="bi bi-envelope top-bar-icon position-relative">
+      <span
+        class="position-absolute top-0 start-100 translate-middle p-1 bg-primary border border-light rounded-circle"></span>
+    </i>
+    <i class="bi bi-bell top-bar-icon position-relative">
+      <span
+        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+    </i>
+    <img src="https://via.placeholder.com/32" class="rounded-circle" alt="Profile" />
+  </div>
+</nav>
 
-
-  <!-- Top Navbar -->
-  <nav class="navbar navbar-light bg-white shadow-sm px-3 py-2">
-    <div class="d-flex align-items-center gap-3">
-      <button class="btn btn-light p-1"><i class="bi bi-arrow-left"></i></button>
-      <input class="form-control form-control-sm w-50" type="search" placeholder="Search in HRMS" />
-      <span class="badge bg-light text-dark border">CTRL + /</span>
-      <i class="bi bi-grid top-bar-icon ms-3"></i>
-      <i class="bi bi-gear top-bar-icon"></i>
-    </div>
-    <div class="d-flex align-items-center gap-3">
-      <i class="bi bi-fullscreen top-bar-icon"></i>
-      <i class="bi bi-grid-3x3-gap top-bar-icon"></i>
-      <i class="bi bi-envelope top-bar-icon position-relative">
-        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-primary border border-light rounded-circle"></span>
-      </i>
-      <i class="bi bi-bell top-bar-icon position-relative">
-        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-      </i>
-      <img src="https://via.placeholder.com/32" class="rounded-circle" alt="Profile" />
-    </div>
+<!-- Breadcrumb and Page Title -->
+<div class="container mt-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><i class="bi bi-house-door-fill"></i></li>
+      <li class="breadcrumb-item">Dashboard</li>
+      <!-- <li class="breadcrumb-item active" aria-current="page">Employee Dashboard</li> -->
+    </ol>
   </nav>
 
-  <!-- Breadcrumb and Page Title -->
-  <div class="container mt-3">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><i class="bi bi-house-door-fill"></i></li>
-        <li class="breadcrumb-item">Dashboard</li>
-        <!-- <li class="breadcrumb-item active" aria-current="page">Employee Dashboard</li> -->
-      </ol>
-    </nav>
-
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h4>Employee Dashboard</h4>
-      <div class="d-flex gap-2">
-        <div class="dropdown">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            <i class="bi bi-file-earmark-text"></i> Export
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">PDF</a></li>
-            <li><a class="dropdown-item" href="#">Excel</a></li>
-          </ul>
-        </div>
-        <button class="btn btn-outline-secondary"><i class="bi bi-calendar-event"></i></button>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Employee Dashboard</h4>
+    <div class="d-flex gap-2">
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-file-earmark-text"></i> Export
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">PDF</a></li>
+          <li><a class="dropdown-item" href="#">Excel</a></li>
+        </ul>
       </div>
-    </div>
-
-    <!-- Alert Box -->
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-      Your Leave Request on <strong>“24th April 2024”</strong> has been Approved!!!
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button class="btn btn-outline-secondary"><i class="bi bi-calendar-event"></i></button>
     </div>
   </div>
 
-
-
- 
+  <!-- Alert Box -->
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    {% if messages %}
+    <div class="mb-4">
+      {% for msg in messages %}
+      <div class="text-center text-red-500">{{ msg }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>

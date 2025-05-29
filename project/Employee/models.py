@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.contrib.auth.models import User
 
 class Employee(models.Model):
 
@@ -39,33 +41,30 @@ class Employee(models.Model):
 # Leave Form 
 
 
-class LeaveRequest(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    STATUS_CHOICES = [('Pending', 'Pending'), ('Approved','Approved'), ('Rejected', 'Rejected')]
+
+class Leave(models.Model):
+    LEAVE_TYPES = [
+        ('SL', 'Sick Leave'),
+        ('CL', 'Casual Leave'),
+        ('PL', 'Paid Leave'),
+        ('AL','Annual Leave')
+    ]
+    STATUS_CHOICES = [('Pending', 'Pending'), ('Approved',
+                                               'Approved'), ('Rejected', 'Rejected')]
     CHOICES = [('Admin', 'Admin'), ('Employee', 'Employee')]
-    
-    start_date = models.DateField(auto_now_add=True)
-    end_date = models.DateField(null=True, blank=True)
+
+    employee = models.ForeignKey(User, on_delete=models.CASCADE)
+    leave_type = models.CharField(max_length=2, choices=LEAVE_TYPES)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    no_of_days = models.PositiveIntegerField()
     reason = models.TextField()
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
-    target = models.CharField( max_length=50, choices=CHOICES, default='Employee')
-    
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=10, choices=STATUS_CHOICES, default='Pending')
+    target = models.CharField(
+        max_length=50, choices=CHOICES, default='Employee')
+    # e.g., 'employee', 'admin', etc.
     is_approved = models.BooleanField(default=False)
-
     def __str__(self):
-        return f"{self.employee.first_name} - {self.status}"
-
-    @property
-    def leave_days(self):
-        return (self.end_date - self.start_date).days + 1
-
-
-class LeaveRecord(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    total_leaves = models.IntegerField()
-    taken = models.IntegerField()
-    absent = models.IntegerField()
-    request = models.IntegerField()
-    worked_days = models.IntegerField()
-    loss_of_pay = models.IntegerField()
-
+        return f"{self.employee.username} - {self.get_leave_type_display()} ({self.start_date} to {self.end_date})"
